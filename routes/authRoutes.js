@@ -16,10 +16,12 @@ router.get(
 router.get(
   '/auth/google/callback',
   passport.authenticate('google', {
-    successRedirect: process.env.NODE_ENV ? DEV_CLIENT_URL : PROD_CLIENT_URL,
-    failureRedirect: process.env.NODE_ENV
-      ? `${DEV_CLIENT_URL}/fail`
-      : `${PROD_CLIENT_URL}/fail`,
+    successRedirect:
+      process.env.NODE_ENV === 'development' ? DEV_CLIENT_URL : PROD_CLIENT_URL,
+    failureRedirect:
+      process.env.NODE_ENV === 'development'
+        ? `${DEV_CLIENT_URL}/fail`
+        : `${PROD_CLIENT_URL}/fail`,
   })
   // (req, res) => {
   //   res.redirect('http://127.0.0.1:5173/blogs');
