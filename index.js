@@ -21,7 +21,11 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: ['http://127.0.0.1:5173', 'http://localhost:5173'],
+    origin: [
+      'http://127.0.0.1:5173',
+      'http://localhost:5173',
+      'https://sq-blog-client.vercel.app',
+    ],
     // origin: '*',
     methods: 'GET,POST,PUT,DELETE',
     credentials: true,
