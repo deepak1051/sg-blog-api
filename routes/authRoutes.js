@@ -16,16 +16,17 @@ router.get(
 router.get(
   '/auth/google/callback',
   passport.authenticate('google', {
-    successRedirect:
-      process.env.NODE_ENV === 'development' ? DEV_CLIENT_URL : PROD_CLIENT_URL,
+    // successRedirect:
+    //   process.env.NODE_ENV === 'development' ? DEV_CLIENT_URL : PROD_CLIENT_URL,
     failureRedirect:
       process.env.NODE_ENV === 'development'
         ? `${DEV_CLIENT_URL}/fail`
         : `${PROD_CLIENT_URL}/fail`,
-  })
-  // (req, res) => {
-  //   res.redirect('http://127.0.0.1:5173/blogs');
-  // }
+    session: true,
+  }),
+  (req, res) => {
+    res.redirect(PROD_CLIENT_URL);
+  }
 );
 
 router.get('/api/current_user', (req, res) => {
